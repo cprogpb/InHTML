@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="这是我第三天学习HTML,这是一个头部元数据">
+    <!-- 引入manifest.json用于支持渐进式Web应用,就是把网页快捷方式放到桌面 -->
+    <link rel="manifest" href="manifest.json">
+    <!-- iPhone图标 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/头像180.png">
+    <!-- icon图标 -->
+    <link rel="icon" sizes="32x32" href="/img/头像icon32.ico">
+    <link rel="icon" sizes="16x16" href="/img/头像icon16.ico">
+
+    <title>练习中...</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0px;
+        }
+
+        #touxiang {
+            width: 100%;
+            height: 150px;
+            background-color: rgb(172, 161, 161);
+            display: flex;
+            flex-direction: column-reverse;
+            font-size: 30px;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #neirong {
+            width: 500px;
+            min-height: 800px;
+            background-color: rgb(172, 161, 161);
+            margin: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            color: rgb(99, 102, 74);
+        }
+
+        #jiewei {
+            width: 100%;
+            height: 150px;
+            background-color: rgb(172, 161, 161);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="touxiang">
+        这是我的网页练习
+        <img src="/img/头像180.png" alt="这是一个头像" width="80" height="80">
+    </div>
+    <div id="neirong">
+        <p><b>《我一无所求》</b></p>
+        <p>我一无所求，只站在林边树后。</p>
+        <p>倦意还逗留在黎明的眼上，露润在空气里。</p>
+        <p>湿草的懒味悬垂在地面的薄雾中。</p>
+        <p>在榕树下你用乳油般柔嫩的手挤着牛奶。</p>
+        <p>我沉静地站立着。</p>
+        <p>我没有走近你。</p>
+        <p>天空和庙里的锣声一同醒起。</p>
+        <p>街尘在驱走的牛蹄下飞扬。</p>
+        <p>把汩汩发响的水瓶搂在腰上，</p>
+        <p>女人们从河边走来。</p>
+        <p>你的钏镯丁当，乳沫溢出罐沿。</p>
+        <p>晨光渐逝而我没有步近你。</p>
+    </div>
+    <div id="jiewei">
+        <p>友情链接</p>
+        <a href="https://kangwenchang.com/">B站康文昌</a>
+    </div>
+
+    <!-- 用于支持渐进式Web应用 -->
+    <script>
+
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("sw.js");
+            });
+        }
+
+    </script>
+
+
+</body>
+
+</html>
