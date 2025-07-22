@@ -17,10 +17,9 @@
         body {
             /* 弹性布局 */
             display: flex;
+            flex-direction: column;
             /* 交叉轴居中 */
             align-items: center;
-            /* 主轴居中 */
-            justify-content: center;
             /* 外边距 */
             margin: 0px;
             /* 最小高度 占满可视区域 */
@@ -33,8 +32,18 @@
             background-attachment: fixed;
         }
 
-        .dv1 {
+        #dv1 {
             display: flex;
+            flex: 2;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #dv2 {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
         }
 
         #ip1 {
@@ -60,6 +69,7 @@
             outline: none;
             /* 字体颜色 */
             color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 200px;
         }
 
         #ip1::placeholder {
@@ -80,6 +90,7 @@
             margin-left: 15px;
             /* 颜色 */
             color: antiquewhite;
+            margin-bottom: 200px;
         }
 
         /*ip1的透明状态*/
@@ -91,18 +102,63 @@
             /* 鼠标光标 默认 */
             cursor: default;
         }
+
+        #ip2{
+            /* 背景颜色 */
+            background-color: rgba(255, 255, 255, 0.2);
+            /* 边框圆角 */
+            border-radius: 50px;
+            /* 边框 */
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            /* 内边距 */
+            padding: 10px;
+            padding-left: 15px;
+            /* 外边距 */
+            margin: 10px;
+            /* 字体大小 超大 */
+            font-size: xx-large;
+            /* 平滑过渡 */
+            transition: all 0.2s;
+            /* 重置行高 确保垂直居中 */
+            line-height: normal;
+            /* 默认选中轮廓 */
+            outline: none;
+            /* 字体颜色 */
+            color: rgba(255, 255, 255, 0.9);
+            width: 450px;
+        }
+        /* 选中样式 */
+        #ip2:focus {
+            /* 选中的边框颜色 */
+            border-color: rgba(59, 150, 211, 0.8);
+        }
+        #ip2::placeholder{
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 
 <body>
-    <!-- 一块地方 -->
-    <div class="dv1">
+    <!-- 一块地方用来放搜索功能 -->
+    <div id="dv2">
+        <input id="ip2" type="text" title="搜索框" placeholder="必应搜索,回车确认!" onkeyup="
+        if (event.key==='Enter') {
+            console.log('执行了');
+            window.location.href='https://www.bing.com/search?q='+encodeURIComponent(this.value.trim());
+        }
+        ">
+    </div>
+
+
+    <!-- 一块地方用来放待办事项功能 -->
+    <div id="dv1">
         <!-- 一个文本输入框 text 自定义数据touming 悬停标题 -->
         <input id="ip1" type="text" data-touming="false" title="待办事项" placeholder="输入待办的事吧!">
 
         <!-- 一行地方 id为sp1  点击触发qiehuan函数(按钮效果)  显示勾号文本 -->
         <span id="sp1" onclick="qiehuan()">✓</span>
     </div>
+
 
     <!-- js脚本 -->
     <script>
