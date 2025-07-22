@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 网页描述 -->
+    <meta name="description" content="记录重要的事情,可以设置为浏览器起始页!">
+    <!-- 网页图标 -->
     <link rel="icon" href="img/头像icon16.ico" sizes="16x16">
     <link rel="icon" href="img/头像icon16.ico" sizes="32x32">
+
+    <!-- 网页标题 -->
     <title>今天要做什么呢?</title>
+
     <style>
         body {
             /* 弹性布局 */
@@ -56,6 +62,10 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        #ip1::placeholder {
+            color: #ffffff81;
+        }
+
         /* 选中样式 */
         #ip1:focus {
             /* 选中的边框颜色 */
@@ -64,30 +74,44 @@
 
         /* span */
         #sp1 {
+            /* 字体大小 */
             font-size: 50px;
+            /* 左边距 */
             margin-left: 15px;
+            /* 颜色 */
             color: antiquewhite;
         }
 
         /*ip1的透明状态*/
         #ip1[data-touming="true"] {
+            /* 背景色 透明 */
             background-color: transparent;
+            /* 边框色 透明 */
             border-color: transparent;
+            /* 鼠标光标 默认 */
             cursor: default;
         }
     </style>
 </head>
 
 <body>
+    <!-- 一块地方 -->
     <div class="dv1">
-        <input id="ip1" type="text" data-touming="false" title="待办事项" >
+        <!-- 一个文本输入框 text 自定义数据touming 悬停标题 -->
+        <input id="ip1" type="text" data-touming="false" title="待办事项" placeholder="输入待办的事吧!">
+
+        <!-- 一行地方 id为sp1  点击触发qiehuan函数(按钮效果)  显示勾号文本 -->
         <span id="sp1" onclick="qiehuan()">✓</span>
     </div>
-    <script>
 
+    <!-- js脚本 -->
+    <script>
+        // 获取sp1(按钮)元素对象
         let an1 = document.getElementById("sp1");
+        // 获取ip1(输入框)元素对象
         let srk1 = document.getElementById("ip1");
 
+        // 函数切换
         function qiehuan() {
             // 如果按钮内容=x
             if (an1.innerText === "✕") {
@@ -103,27 +127,28 @@
                 window.localStorage.removeItem("srknr");
             }
             else {
-                // 设置按钮内容为x
-                an1.innerText = "✕";
-                // 赋值touming属性为true 会触发选择器设置透明
-                srk1.dataset.touming = "true";
-                // 只读为true
-                srk1.readOnly = true;
-                // 把输入框里的值存到本地储存,位置srknr这个键
-                window.localStorage.setItem("srknr",srk1.value);
+                if (srk1.value !== "") {
+                    // 设置按钮内容为x
+                    an1.innerText = "✕";
+                    // 赋值touming属性为true 会触发选择器设置透明
+                    srk1.dataset.touming = "true";
+                    // 只读为true
+                    srk1.readOnly = true;
+                    // 把输入框里的值存到本地储存,位置srknr这个键
+                    window.localStorage.setItem("srknr", srk1.value);
+                }
             }
-
         }
 
-    // 获取本地储存数据
-     let data = window.localStorage.getItem("srknr");
-    // 有数据就把数据放到输入框的值里
-     if (data) {
-        // 把输入框的值改成本地储存里的
-        document.getElementById("ip1").value = data;
-        // 调用切换状态
-        qiehuan(); 
-     }
+        // 获取本地储存数据
+        let data = window.localStorage.getItem("srknr");
+        // 有数据就把数据放到输入框的值里
+        if (data) {
+            // 把输入框的值改成本地储存里的
+            document.getElementById("ip1").value = data;
+            // 调用切换状态
+            qiehuan();
+        }
 
     </script>
 
