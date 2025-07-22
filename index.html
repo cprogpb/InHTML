@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/头像icon16.ico" sizes="16x16">
+    <link rel="icon" href="img/头像icon16.ico" sizes="32x32">
+    <title>今天要做什么呢?</title>
+    <style>
+        body {
+            /* 弹性布局 */
+            display: flex;
+            /* 交叉轴居中 */
+            align-items: center;
+            /* 主轴居中 */
+            justify-content: center;
+            /* 外边距 */
+            margin: 0px;
+            /* 最小高度 占满可视区域 */
+            min-height: 100vh;
+            /* 背景图片路径 */
+            background-image: url(img/bj2.png);
+            /* 背景大小 覆盖 */
+            background-size: cover;
+            /* 背景滚动 固定 */
+            background-attachment: fixed;
+        }
+
+        .dv1 {
+            display: flex;
+        }
+
+        #ip1 {
+            /* 背景颜色 */
+            background-color: rgba(255, 255, 255, 0.2);
+            /* 边框圆角 */
+            border-radius: 50px;
+            /* 边框 */
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            /* 内边距 */
+            padding: 10px;
+            /* 外边距 */
+            margin: 10px;
+            /* 字体大小 超大 */
+            font-size: xx-large;
+            /* 平滑过渡 */
+            transition: all 0.2s;
+            /* 文字交叉轴 居中 */
+            text-align: center;
+            /* 重置行高 确保垂直居中 */
+            line-height: normal;
+            /* 默认选中轮廓 */
+            outline: none;
+            /* 字体颜色 */
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 选中样式 */
+        #ip1:focus {
+            /* 选中的边框颜色 */
+            border-color: rgba(59, 150, 211, 0.8);
+        }
+
+        /* span */
+        #sp1 {
+            font-size: 50px;
+            margin-left: 15px;
+            color: antiquewhite;
+        }
+
+        /*ip1的透明状态*/
+        #ip1[data-touming="true"] {
+            background-color: transparent;
+            border-color: transparent;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dv1">
+        <input id="ip1" type="text" data-touming="false" title="待办事项" >
+        <span id="sp1" onclick="qiehuan()">✓</span>
+    </div>
+    <script>
+
+        let an1 = document.getElementById("sp1");
+        let srk1 = document.getElementById("ip1");
+
+        function qiehuan() {
+            // 如果按钮内容=x
+            if (an1.innerText === "✕") {
+                // 赋值按钮内容为√
+                an1.innerText = "✓";
+                // 赋值touming属性为false
+                srk1.dataset.touming = "false";
+                // 清空输入框内容
+                srk1.value = "";
+                // 只读为false
+                srk1.readOnly = false;
+                // 清除本地储存的输入框内容数据
+                window.localStorage.removeItem("srknr");
+            }
+            else {
+                // 设置按钮内容为x
+                an1.innerText = "✕";
+                // 赋值touming属性为true 会触发选择器设置透明
+                srk1.dataset.touming = "true";
+                // 只读为true
+                srk1.readOnly = true;
+                // 把输入框里的值存到本地储存,位置srknr这个键
+                window.localStorage.setItem("srknr",srk1.value);
+            }
+
+        }
+
+    // 获取本地储存数据
+     let data = window.localStorage.getItem("srknr");
+    // 有数据就把数据放到输入框的值里
+     if (data) {
+        // 把输入框的值改成本地储存里的
+        document.getElementById("ip1").value = data;
+        // 调用切换状态
+        qiehuan(); 
+     }
+
+    </script>
+
+</body>
+
+</html>
